@@ -43,15 +43,21 @@ CLOSE #1
 
 ' GET COMPLETION DATA
 DIM HAS_POKEMON(HOW_MANY_POKEMON) AS STRING
-OPEN "save/save.txt" FOR INPUT AS #1
-FOR i = 1 TO HOW_MANY_POKEMON
-    IF EOF(1) THEN
+IF _FILEEXISTS("save/save.txt") THEN
+    OPEN "save/save.txt" FOR INPUT AS #1
+    FOR i = 1 TO HOW_MANY_POKEMON
+        IF EOF(1) THEN
+            HAS_POKEMON(i) = "0"
+        ELSE
+            LINE INPUT #1, HAS_POKEMON(i)
+        END IF
+    NEXT
+    CLOSE #1
+ELSE
+    FOR i = 1 TO HOW_MANY_POKEMON
         HAS_POKEMON(i) = "0"
-    ELSE
-        LINE INPUT #1, HAS_POKEMON(i)
-    END IF
-NEXT
-CLOSE #1
+    NEXT
+END IF
 
 ' SAVE PROGRESS
 SAVE:
