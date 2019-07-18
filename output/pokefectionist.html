@@ -3236,3 +3236,4 @@
 <TD ALIGN='CENTER' STYLE='BORDER: 1; WIDTH: 33%;'>---</TD>
 </TR>
 </TABLE>
+<script>console.log(`Completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`);</script>

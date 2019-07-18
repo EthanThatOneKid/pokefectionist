@@ -8,6 +8,7 @@ TD_STYLE$ = "STYLE='BORDER: 1; WIDTH: 33%;"
 COLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #90EE90;'>"
 UNCOLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>"
 BLANK_SPOT$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>---</TD>"
+SCRIPT$ = "<script>console.log(`Completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`);</script>"
 
 ' SPLASH SCREEN
 SPLASH:
@@ -95,6 +96,7 @@ FOR page = 1 TO _CEIL(HOW_MANY_POKEMON / 9)
     NEXT i
     PRINT #1, "</TABLE>"
 NEXT page
+PRINT #1, SCRIPT$
 CLOSE #1
 
 ' MAIN SELECTION
