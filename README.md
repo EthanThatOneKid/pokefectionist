@@ -14,4 +14,4 @@ I originally created this program to help myself with a life-long project to com
 
 Created with <3 by EthanThatOneKid
 
-[example]: https://github.com/EthanThatOneKid/pokefectionist/blob/master/output/pokefectionist.html
+[example]: https://htmlpreview.github.io/?https://github.com/EthanThatOneKid/pokefectionist/blob/master/output/pokefectionist.html
