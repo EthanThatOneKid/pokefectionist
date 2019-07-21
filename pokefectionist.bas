@@ -5,7 +5,9 @@ ALI_CEN$ = "ALIGN='CENTER'"
 TABLE$ = "<TABLE BORDER='3' STYLE='BORDER: 3; WIDTH: 100%' " + ALI_CEN$ + ">"
 TH$ = "<TH COLSPAN='3' STYLE='FONT-FAMILY: COURIER NEW; FONT-SIZE: 2EM'>PAGE "
 TD_STYLE$ = "STYLE='BORDER: 1; WIDTH: 33%;"
-COLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #90EE90;'>"
+COLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #8FFF91;'>"
+REVERSE_HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #82FFCB;'>"
+HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #E4FF82;'>"
 UNCOLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>"
 BLANK_SPOT$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>---</TD>"
 SCRIPT$ = "<script>console.log(`Completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`);</script>"
@@ -82,6 +84,10 @@ FOR page = 1 TO _CEIL(HOW_MANY_POKEMON / 9)
             IF CURRENT_POKEMON <= HOW_MANY_POKEMON THEN
                 IF HAS_POKEMON(CURRENT_POKEMON) = "1" THEN
                     PRINT #1, COLLECTED_POKEMON$
+                ELSEIF HAS_POKEMON(CURRENT_POKEMON) = "2" THEN
+                    PRINT #1, REVERSE_HOLOGRAPHIC_POKEMON$
+                ELSEIF HAS_POKEMON(CURRENT_POKEMON) = "3" THEN
+                    PRINT #1, HOLOGRAPHIC_POKEMON$
                 ELSEIF HAS_POKEMON(CURRENT_POKEMON) = "0" THEN
                     PRINT #1, UNCOLLECTED_POKEMON$
                 END IF
@@ -103,19 +109,21 @@ CLOSE #1
 MAIN_MENU:
 ADDING = 1
 COLOR 15
-PRINT "[A]dd or [D]elete or [E]xit: ";
+PRINT "[A]dd or add [R]everse or add [H]olo or [D]elete or [E]xit: ";
 DO: K$ = UCASE$(INKEY$)
-LOOP UNTIL K$ = "A" OR K$ = "D" OR K$ = "E"
+LOOP UNTIL K$ = "A" OR K$ = "R" OR K$ = "H" OR K$ = "D" OR K$ = "E"
 PRINT K$
-IF K$ = "A" THEN ADDING = 1
-IF K$ = "D" THEN ADDING = 0
+IF K$ = "A" THEN ADDING$ = "1"
+IF K$ = "R" THEN ADDING$ = "2"
+IF K$ = "H" THEN ADDING$ = "3"
+IF K$ = "D" THEN ADDING$ = "0"
 IF K$ = "E" THEN END
 INPUT "Pokedex number? ", POKEDEX_NUMBER
 IF POKEDEX_NUMBER > 0 AND POKEDEX_NUMBER <= HOW_MANY_POKEMON THEN
-    IF ADDING = 1 THEN
-        HAS_POKEMON(POKEDEX_NUMBER) = "1"
+    IF ADDING$ = "1" OR ADDING$ = "2" OR ADDING$ = "3" THEN
+        HAS_POKEMON(POKEDEX_NUMBER) = ADDING$
         PRINT "Successfully added " + POKEMON(POKEDEX_NUMBER)
-    ELSEIF ADDING = 0 THEN
+    ELSEIF ADDING$ = "0" THEN
         HAS_POKEMON(POKEDEX_NUMBER) = "0"
         PRINT "Successfully deleted " + POKEMON(POKEDEX_NUMBER)
     END IF
