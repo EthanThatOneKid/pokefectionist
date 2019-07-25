@@ -1,5 +1,14 @@
 _TITLE "Pokefectionist"
 
+' HEAD
+HEAD$ = "<HEAD>"
+HEAD$ = HEAD$ + "<TITLE>Pokefectionist</TITLE>"
+HEAD$ = HEAD$ + "<link rel='shortcut icon' href='favicon.ico'>"
+HEAD$ = HEAD$ + "</HEAD>"
+HEAD$ = HEAD$ + "<STYLE>html, body { margin: 0; text-align: center } </STYLE>"
+HEAD$ = HEAD$ + "<H1>Pokefectionist</H1><BR>"
+HEAD$ = HEAD$ + "<SMALL ID='%'></SMALL>"
+
 ' HTML HELPER VARIABLES
 ALI_CEN$ = "ALIGN='CENTER'"
 TABLE$ = "<TABLE BORDER='3' STYLE='BORDER: 3; WIDTH: 100%' " + ALI_CEN$ + ">"
@@ -10,7 +19,7 @@ REVERSE_HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUN
 HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #E4FF82;'>"
 UNCOLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>"
 BLANK_SPOT$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>---</TD>"
-SCRIPT$ = "<script>console.log(`Completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`);</script>"
+SCRIPT$ = "<script>document.querySelector('#%').textContent = `completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`;</script>"
 
 ' SPLASH SCREEN
 SPLASH:
@@ -74,6 +83,7 @@ CLOSE #1
 GENERATE_HTML:
 DIM GIMME_LINE AS STRING
 OPEN "output/pokefectionist.html" FOR OUTPUT AS #1
+PRINT #1, HEAD$
 CURRENT_POKEMON = 1
 FOR page = 1 TO _CEIL(HOW_MANY_POKEMON / 9)
     PRINT #1, TABLE$
@@ -104,7 +114,6 @@ FOR page = 1 TO _CEIL(HOW_MANY_POKEMON / 9)
 NEXT page
 PRINT #1, SCRIPT$
 CLOSE #1
-
 ' MAIN SELECTION
 MAIN_MENU:
 ADDING = 1
