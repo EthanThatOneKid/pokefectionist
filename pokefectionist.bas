@@ -2,11 +2,11 @@ _TITLE "Pokefectionist"
 
 ' HEAD
 HEAD$ = "<HEAD>"
-HEAD$ = HEAD$ + "<TITLE>Pokéfectionist</TITLE>"
+HEAD$ = HEAD$ + "<TITLE>Pok&eacute;fectionist</TITLE>"
 HEAD$ = HEAD$ + "<link rel='shortcut icon' href='favicon.ico'>"
 HEAD$ = HEAD$ + "</HEAD>"
 HEAD$ = HEAD$ + "<STYLE>html, body { margin: 0; text-align: center; font-family: courier new; } h1 { margin: 0; }</STYLE>"
-HEAD$ = HEAD$ + "<H1>Pokéfectionist</H1>"
+HEAD$ = HEAD$ + "<H1>Pok&eacute;fectionist</H1>"
 HEAD$ = HEAD$ + "<SMALL ID='pc'></SMALL><BR>"
 HEAD$ = HEAD$ + "<SMALL>see <A HREF='#legend'>legend</A></SMALL>"
 
