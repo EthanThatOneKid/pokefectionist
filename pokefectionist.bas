@@ -2,32 +2,47 @@ _TITLE "Pokefectionist"
 
 ' HEAD
 HEAD$ = "<HEAD>"
-HEAD$ = HEAD$ + "<TITLE>Pokefectionist</TITLE>"
+HEAD$ = HEAD$ + "<TITLE>Pokéfectionist</TITLE>"
 HEAD$ = HEAD$ + "<link rel='shortcut icon' href='favicon.ico'>"
 HEAD$ = HEAD$ + "</HEAD>"
-HEAD$ = HEAD$ + "<STYLE>html, body { margin: 0; text-align: center } </STYLE>"
-HEAD$ = HEAD$ + "<H1>Pokefectionist</H1><BR>"
-HEAD$ = HEAD$ + "<SMALL ID='%'></SMALL>"
+HEAD$ = HEAD$ + "<STYLE>html, body { margin: 0; text-align: center; font-family: courier new; } h1 { margin: 0; }</STYLE>"
+HEAD$ = HEAD$ + "<H1>Pokeféctionist</H1>"
+HEAD$ = HEAD$ + "<SMALL ID='pc'></SMALL><BR>"
+HEAD$ = HEAD$ + "<SMALL>see <A HREF='#legend'>legend</A></SMALL>"
+
+' COLORS
+COLLECTED_COLOR$ = "#8FFF91"
+REVERSE_HOLOGRAPHIC_COLOR$ = "#82FFCB"
+HOLOGRAPHIC_COLOR$ = "#E4FF82"
 
 ' HTML HELPER VARIABLES
 ALI_CEN$ = "ALIGN='CENTER'"
 TABLE$ = "<TABLE BORDER='3' STYLE='BORDER: 3; WIDTH: 100%' " + ALI_CEN$ + ">"
 TH$ = "<TH COLSPAN='3' STYLE='FONT-FAMILY: COURIER NEW; FONT-SIZE: 2EM'>PAGE "
 TD_STYLE$ = "STYLE='BORDER: 1; WIDTH: 33%;"
-COLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #8FFF91;'>"
-REVERSE_HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #82FFCB;'>"
-HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: #E4FF82;'>"
+COLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: " + COLLECTED_COLOR$ + ";'>"
+REVERSE_HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: " + REVERSE_HOLOGRAPHIC_COLOR$ + ";'>"
+HOLOGRAPHIC_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + " BACKGROUND-COLOR: " + HOLOGRAPHIC_COLOR$ + ";'>"
 UNCOLLECTED_POKEMON$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>"
 BLANK_SPOT$ = "<TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>---</TD>"
-SCRIPT$ = "<script>document.querySelector('#%').textContent = `completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`;</script>"
+SCRIPT$ = "<script>document.querySelector('#pc').textContent = `completion: ${Math.round(100 * [...document.querySelectorAll('td')].filter(el => !!el.style['background-color']).length / [...document.querySelectorAll('td')].length)}%`;</script>"
+
+' LEGEND
+LEGEND$ = "<TABLE ID='legend' BORDER='3' STYLE='BORDER: 3; WIDTH: 33%'>"
+LEGEND$ = LEGEND$ + "<TH>Legend</TH>"
+LEGEND$ = LEGEND$ + "<TR><TD " + ALI_CEN$ + " " + TD_STYLE$ + "'>Uncollected</TD></TR>"
+LEGEND$ = LEGEND$ + "<TR>" + COLLECTED_POKEMON$ + "Collected</TD></TR>"
+LEGEND$ = LEGEND$ + "<TR>" + REVERSE_HOLOGRAPHIC_POKEMON$ + "Collected (reverse holographic)</TD></TR>"
+LEGEND$ = LEGEND$ + "<TR>" + HOLOGRAPHIC_POKEMON$ + "Collected (holographic)</TD></TR>"
+LEGEND$ = LEGEND$ + "</TABLE>"
 
 ' SPLASH SCREEN
 SPLASH:
 COLOR 11
 PRINT "                _ __"
-PRINT "               ' )  )   /      /)      _/_                 _/_"
-PRINT "                /--'__ /_  _  // _  _. /  o __ ____  o _   /"
-PRINT "               /   (_)/ <_</_//_</_(__<__<_(_)/ / <_<_/_)_<__"
+PRINT "               ' )  )    /  /   /)      __/_ .       .    __/_"
+PRINT "                /--'_  /_  _  / /_  __, /    _  __    _   /"
+PRINT "               /   (_)/ <_</_//_</_(___<__<_(_)/ /_<_/_)_<__"
 PRINT "                            />   a Pokemon collector's tool"
 PRINT "                           </        By EthanThatOneKid"
 PRINT
@@ -112,8 +127,10 @@ FOR page = 1 TO _CEIL(HOW_MANY_POKEMON / 9)
     NEXT i
     PRINT #1, "</TABLE>"
 NEXT page
+PRINT #1, LEGEND$
 PRINT #1, SCRIPT$
 CLOSE #1
+
 ' MAIN SELECTION
 MAIN_MENU:
 ADDING = 1
