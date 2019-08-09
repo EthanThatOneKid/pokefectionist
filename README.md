@@ -10,6 +10,9 @@ This is a program written in Qbasic in the QB64 IDE. It has a text-based interfa
 ## 🧙‍ Origin
 I originally created this program to help myself with a life-long project to complete a binder of Pokémon cards with one of each Pokémon. A page from the binder is composed of 3x3 card sleeves; meaning 9 cards per page. I created this program that simultaneously saves my current list of Pokémon that I have obtained and outputs an html file that allows me to visually comprehend my completion in a way that mimics the format of the binder.
 
+## 🔎 References
+* [PkmnCards database](https://pkmncards.com/)
+
 ---
 
 Created with <3 by EthanThatOneKid
