@@ -12,6 +12,7 @@ I originally created this program to help myself with a life-long project to com
 
 ## 🔎 References
 * [PkmnCards database](https://pkmncards.com/)
+* [Pokemon Names](https://gist.github.com/azai91/31e3b31cbd3992a1cc679017f850a022)
 
 ---
 
