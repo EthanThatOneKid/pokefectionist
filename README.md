@@ -25,7 +25,7 @@ I originally created this program to help myself with a life-long project to com
 ## References 🔎
 
 * [Pokémon TCG database](https://pkmncards.com/)
-* [Pokémon Names](https://gist.github.com/azai91/31e3b31cbd3992a1cc679017f850a022)
+* [Pokémon Names](https://github.com/sindresorhus/pokemon/blob/main/data/en.json)
 
 ---
 
